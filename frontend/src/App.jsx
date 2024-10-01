@@ -1,34 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, {useEffect, useState} from "react"
+import { Navigate, Route, Routes } from "react-router-dom"
+import HomePage from "./pages/home/HomePage"
+import LoginPage from "./pages/auth/login/LoginPage"
+import SignUpPage from "./pages/auth/signup/SignUpPage"
+import Sidebar from "./components/Sidebar"
+import ProfilePage from "./pages/profile/ProfilePage"
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [auth, setAuth] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  const getMe = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/me", {
+        credentials: "include"
+      })
+      if (!response.ok) {
+        setAuth(null)
+      } else {
+      const data = await response.json()
+        console.log(data)
+        setAuth(data)
+      }
+    } catch (error) {
+      console.error(error.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    getMe()
+  }, [])
+
+  if (loading) {
+    return <div className="flex h-[100vh] justify-center items-center text-5xl text-white font-[500]">Loading...</div>
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="flex max-w-6xl mx-auto">
+      {auth && <Sidebar />}
+      <Routes>
+        <Route path='/' element={auth ? <HomePage /> : <Navigate to="/login"/>} />
+        <Route path='/login' element={!auth ? <LoginPage /> : <Navigate to="/" />} />
+        <Route path='/signup' element={!auth ? <SignUpPage /> : <Navigate to="/" />} />
+        <Route path="/profile/:username" element={auth ? <ProfilePage /> : <Navigate to="/login"/>}/>        
+      </Routes>
+    </div>
   )
 }
 

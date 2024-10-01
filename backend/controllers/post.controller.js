@@ -90,9 +90,17 @@ export const commentOnPost = async (req, res) => {
 export const likeUnlikePost = async (req, res) => {
 	try {
 		const userId = req.user._id;
-		const { id: postId } = req.params;
+		const { id: postId } = req.body;
 
 		const post = await Post.findById(postId);
+		const posts = await Post.find().sort({ createdAt: -1 }).populate({
+            path: "user",
+            select: "-password"
+        })
+        .populate({
+            path: "comments.user",
+            select: "-password"
+        })
 
 		if (!post) {
 			return res.status(404).json({ error: "Post not found" });
@@ -104,8 +112,8 @@ export const likeUnlikePost = async (req, res) => {
 			// Unlike post
 			await Post.updateOne({ _id: postId }, { $pull: { likes: userId } });
             await User.updateOne({ _id: userId }, { $pull: { likedPosts: postId } });
+			res.status(200).json({message: "Post unliked successfully"})
 
-			res.status(200).json({message: "Post unliked successfully"});
 		} else {
 			// Like post
 			post.likes.push(userId);
@@ -118,8 +126,7 @@ export const likeUnlikePost = async (req, res) => {
 				type: "like",
 			});
 			await notification.save();
-
-			res.status(200).json({ message: "Post liked successfully" });
+			res.status(200).json({message: "Post liked successfully"})
 		}
 	} catch (error) {
 		console.log("Error in likeUnlikePost controller: ", error);

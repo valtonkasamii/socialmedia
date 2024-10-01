@@ -2,6 +2,7 @@ import express from "express"
 import dotenv from "dotenv"
 import cookieParser from "cookie-parser"
 import {v2 as cloudinary} from "cloudinary"
+import cors from "cors"
 
 import authRoutes from "./routes/auth.route.js"
 import userRoutes from "./routes/user.route.js"
@@ -22,6 +23,10 @@ const app = express()
 const PORT = process.env.PORT || 5000
 
 app.use(express.json())
+app.use(cors({
+    origin: "http://localhost:3000", 
+    credentials: true,              
+  }))
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 
