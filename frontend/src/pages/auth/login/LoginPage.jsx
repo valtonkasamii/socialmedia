@@ -13,7 +13,7 @@ const LoginPage = () => {
         try {
         const { username, password } = formData
 
-        const response = await fetch("http://localhost:5000/api/auth/login", {
+        const response = await fetch("https://social-media-app-22.vercel.app/api/auth/login", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({ username, password }),
@@ -23,6 +23,7 @@ const LoginPage = () => {
         if (!response.ok) {
             const errorData = await response.json();
             setErr(errorData.error)
+            console.log(errorData)
           } else {
         const data = await response.json()
         console.log(data)
@@ -55,7 +56,7 @@ const LoginPage = () => {
         </form>
         </div>
         <p className='text-xl pt-2 text-red-500'>{err}</p>
-        <a href='http://localhost:3000/signup'><button className='text-[20px] bg-blue-500 px-3 py-[2px] rounded-full font-[500] mt-3'>Sign Up</button></a>
+        <a href='/signup'><button className='text-[20px] bg-blue-500 px-3 py-[2px] rounded-full font-[500] mt-3'>Sign Up</button></a>
         </div>
     
     </div>

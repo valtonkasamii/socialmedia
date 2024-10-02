@@ -15,7 +15,7 @@ const SignUpPage = () => {
         try {
         const { email, username, fullName, password } = formData
 
-        const response = await fetch("http://localhost:5000/api/auth/signup", {
+        const response = await fetch("https://social-media-app-22.vercel.app/api/auth/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({ email, username, fullName, password }),
@@ -60,7 +60,7 @@ const SignUpPage = () => {
         </form>
         </div>
         <p className='text-xl pt-2 text-red-500'>{err}</p>
-        <a href='http://localhost:3000/login'><button className='text-[20px] bg-blue-500 px-3 py-[2px] rounded-full font-[500] mt-3'>Login</button></a>
+        <a href='/login'><button className='text-[20px] bg-blue-500 px-3 py-[2px] rounded-full font-[500] mt-3'>Login</button></a>
         </div>
     
     </div>

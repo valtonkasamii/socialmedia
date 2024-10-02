@@ -34,7 +34,7 @@ const Posts = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch("http://localhost:5000/api/posts/create", {
+            const response = await fetch("https://social-media-app-22.vercel.app/api/posts/create", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 credentials: "include",
@@ -54,7 +54,7 @@ const Posts = () => {
 
     const allPosts = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/posts/all", {
+            const response = await fetch("https://social-media-app-22.vercel.app/api/posts/all", {
                 credentials: "include"
             })
 
@@ -72,7 +72,7 @@ const Posts = () => {
 
     const handleLike = async (id) => {
         try {
-            const response = await fetch("http://localhost:5000/api/posts/like", {
+            const response = await fetch("https://social-media-app-22.vercel.app/api/posts/like", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 credentials: "include",
@@ -102,7 +102,7 @@ const Posts = () => {
 
     const getMe = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/auth/me", {
+            const response = await fetch("https://social-media-app-22.vercel.app/api/auth/me", {
                 credentials: "include"
             })
 
@@ -121,7 +121,7 @@ const Posts = () => {
         const currentUrl = window.location.href
             const username = currentUrl.split("/").pop().split(":")[1]
         try {
-            const response = await fetch(`http://localhost:5000/api/posts/user/${username}`, {
+            const response = await fetch(`https://social-media-app-22.vercel.app/api/posts/user/${username}`, {
                 credentials: "include"
             })
 
@@ -138,7 +138,7 @@ const Posts = () => {
 
     const getFollowing = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/posts/following", {
+            const response = await fetch("https://social-media-app-22.vercel.app/api/posts/following", {
                 credentials: "include"
             })
             if (!response.ok) {
@@ -153,14 +153,14 @@ const Posts = () => {
     }
 
     useEffect(() => {
-        if (window.location.href === "http://localhost:3000/") {
+        getMe()
+        if (window.location.href === "https://social-media-app-111.vercel.app/") {
             allPosts()
             setFf(true)
             setPosting(true)
         } else {
             setUserPosts()
             setFf(false)
-            getMe()
             const currentUrl = window.location.href
             const username = currentUrl.split("/").pop().split(":")[1]
             if (me.username === username) {
@@ -172,7 +172,7 @@ const Posts = () => {
     }, [])
 
     useEffect(() => {
-        if (window.location.href === "http://localhost:3000/") {
+        if (window.location.href === "https://social-media-app-111.vercel.app/") {
             
             setPosting(true)
         } else {
@@ -244,7 +244,7 @@ const Posts = () => {
                 </div>
 
                 <div className='flex items-center space-x-1'>
-                <FaRegHeart onClick={() => {handleLike(post._id)}} className={`cursor-pointer ml-1 mt-2 text-[19px] ${redLike(post.likes, post.user._id)}`} />
+                <FaRegHeart onClick={() => {handleLike(post._id)}} className={`cursor-pointer ml-1 mt-2 text-[19px] ${redLike(post.likes, me._id)}`} />
                 <p className='mt-[3px]'>{post.likes.length}</p>
                 </div>
             </div>

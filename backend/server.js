@@ -22,11 +22,16 @@ cloudinary.config({
 const app = express()
 const PORT = process.env.PORT || 5000
 
+const corsOptions = {
+    origin: "https://social-media-app-111.vercel.app", 
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+}
+
 app.use(express.json())
-app.use(cors({
-    origin: "http://localhost:3000", 
-    credentials: true,              
-  }))
+app.options("", cors(corsOptions))
+app.use(cors(corsOptions))
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 
