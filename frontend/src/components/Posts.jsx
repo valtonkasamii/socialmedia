@@ -153,6 +153,7 @@ const Posts = () => {
     }
 
     useEffect(() => {
+        getMe()
         if (window.location.href === "http://localhost:3000/") {
             allPosts()
             setFf(true)
@@ -160,7 +161,6 @@ const Posts = () => {
         } else {
             setUserPosts()
             setFf(false)
-            getMe()
             const currentUrl = window.location.href
             const username = currentUrl.split("/").pop().split(":")[1]
             if (me.username === username) {
@@ -244,7 +244,7 @@ const Posts = () => {
                 </div>
 
                 <div className='flex items-center space-x-1'>
-                <FaRegHeart onClick={() => {handleLike(post._id)}} className={`cursor-pointer ml-1 mt-2 text-[19px] ${redLike(post.likes, post.user._id)}`} />
+                <FaRegHeart onClick={() => {handleLike(post._id)}} className={`cursor-pointer ml-1 mt-2 text-[19px] ${redLike(post.likes, me._id)}`} />
                 <p className='mt-[3px]'>{post.likes.length}</p>
                 </div>
             </div>
