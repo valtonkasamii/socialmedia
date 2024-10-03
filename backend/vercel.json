@@ -19,10 +19,5 @@
             }
         }
     ],
-    "regions": ["fra1"],
-  "functions": {
-    "backend/**/*.js": {
-      "regions": ["fra1"]
-    }
-  }
+    "regions": ["fra1"]
 }
