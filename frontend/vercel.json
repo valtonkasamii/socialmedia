@@ -1,11 +1,5 @@
 {
     "rewrites": [
       { "source": "/(.*)", "destination": "/" }
-    ],
-   "regions": ["fra1"],
-  "functions": {
-    "frontend/**/*.js": {
-      "regions": ["fra1"]
-    }
-  }
+    ]
   }
