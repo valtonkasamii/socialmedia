@@ -18,5 +18,11 @@
                 "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS" 
             }
         }
-    ]
+    ],
+    "functions": {
+    "api/**/*.js": {
+      "regions": ["fra1"]
+    }
+  },
+  "regions": ["fra1"]
 }
