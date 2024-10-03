@@ -19,10 +19,10 @@
             }
         }
     ],
-    "functions": {
+    "regions": ["fra1"],
+  "functions": {
     "api/**/*.js": {
       "regions": ["fra1"]
     }
-  },
-  "regions": ["fra1"]
+  }
 }
