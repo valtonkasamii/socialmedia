@@ -26,11 +26,10 @@ const corsOptions = {
     origin: "https://social-media-app-111.vercel.app", 
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
 }
 
 app.use(express.json())
-app.options("", cors(corsOptions))
+app.options("*", cors(corsOptions))
 app.use(cors(corsOptions))
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
