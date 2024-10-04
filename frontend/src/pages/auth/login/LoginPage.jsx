@@ -13,7 +13,7 @@ const LoginPage = () => {
         try {
         const { username, password } = formData
 
-        const response = await fetch("https://social-media-app-22.vercel.app/api/auth/login", {
+        const response = await fetch("https://spot-polyester-whitefish.glitch.me/api/auth/login", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({ username, password }),
