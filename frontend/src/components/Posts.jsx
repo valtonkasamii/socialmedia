@@ -12,6 +12,8 @@ const Posts = () => {
     const [ff, setFf] = useState(false)
     const [me, setMe] = useState({})
     const [posting, setPosting] = useState(false)
+    const [post, setPost] = useState(true)
+    const [loading, setLoading] = useState(false)
 
     const fileInputRef = useRef(null)
 
@@ -33,6 +35,8 @@ const Posts = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setPost(false)
+        setLoading(true)
         try {
             const response = await fetch("https://socialmedia-ozds.onrender.com/api/posts/create", {
                 method: "POST",
@@ -47,6 +51,8 @@ const Posts = () => {
             const data = await response.json()
             window.location.reload()
             }
+            setLoading(false)
+            setPost(true)
         } catch (error) {
             console.error(error.message)
         }
@@ -203,12 +209,13 @@ const Posts = () => {
 
             <div className='flex justify-between mx-5'>
             <CiImageOn onClick={handleIconClick} className='cursor-pointer text-3xl bg-gray-700 rounded-full py-1'/>
-            <button className='bg-blue-500 px-3 rounded-full font-[500] text-[18px]'>Post</button>
+            {post && <button className='bg-blue-500 px-3 rounded-full font-[500] text-[18px]'>Post</button>}
+            {loading && <div className='flex justify-center items-center bg-gray-500 px-3 rounded-full font-[500] text-[18px]'>Loading</button>}
             </div>
 
-            <div className='flex justify-center mt-5'>
+            {img && <div className='flex justify-center mt-5'>
             <img src={img}/>
-            </div>
+            </div>}
 
             <div className='border-b-[1px] border-gray-500 mt-3'></div>
         </form>}
