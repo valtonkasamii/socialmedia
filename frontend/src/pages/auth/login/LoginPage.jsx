@@ -59,7 +59,7 @@ const LoginPage = () => {
             <input required name='username' value={formData.username} onChange={handleInputChange} type='text' className='bg-black border-2 border-gray-500 rounded-[5px] px-[5px] h-[50px] w-[300px] text-[20px]' placeholder='Username'/>
             <input required name='password' value={formData.password} onChange={handleInputChange} type='password' className='bg-black border-2 border-gray-500 rounded-[5px] px-[5px] h-[50px] w-[300px] text-[20px]' placeholder='Password'/>
             {login && <button className='bg-blue-500  rounded-[5px] py-2 text-[20px] font-[500]'>Login</button>}
-            {loading && <div className='bg-gray-500 cursor-not-allowed rounded-[5px] py-2 text-[20px] font-[500]'>Loading</div>}
+            {loading && <div className='flex justify-center items-center bg-gray-500 cursor-not-allowed rounded-[5px] py-2 text-[20px] font-[500]'>Loading</div>}
         </form>
         </div>
         <p className='text-xl pt-2 text-red-500'>{err}</p>
