@@ -63,7 +63,7 @@ const SignUpPage = () => {
             <input maxLength="13" required name='fullName' value={formData.fullName} onChange={handleInputChange} type='text' className='bg-black border-2 border-gray-500 rounded-[5px] px-[5px] h-[50px] w-[300px] text-[20px]' placeholder='Full Name'/>
             <input required name='password' value={formData.password} onChange={handleInputChange} type='password' className='bg-black border-2 border-gray-500 rounded-[5px] px-[5px] h-[50px] w-[300px] text-[20px]' placeholder='Password'/>
             {signUp && <button className='bg-blue-500  rounded-[5px] py-2 text-[20px] font-[500]'>Sign Up</button>}
-            {loading && <div className='flex cursor-not-allowed justify-center items-center bg-gray-500 rounded-[5px] py-2 text-[20px] font-[500]'>Sign Up</div>}
+            {loading && <div className='flex cursor-not-allowed justify-center items-center bg-gray-500 rounded-[5px] py-2 text-[20px] font-[500]'>Loading</div>}
         </form>
         </div>
         <p className='text-xl pt-2 text-red-500'>{err}</p>
