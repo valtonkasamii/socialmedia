@@ -7,9 +7,13 @@ const LoginPage = () => {
 	});
 
 	const [err, setErr] = useState("")
+  const [login, setLogin] = useState(true)
+  const [loading, setLoading] = useState(false)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+    setLogin(false)
+    setLoading(true)
         try {
         const { username, password } = formData
 
@@ -31,6 +35,8 @@ const LoginPage = () => {
 
             window.location = "/"
           }
+          setLoading(false)
+          setLogin(true)
         } catch (error) {
             console.error(error.message)
         }
@@ -53,6 +59,7 @@ const LoginPage = () => {
             <input required name='username' value={formData.username} onChange={handleInputChange} type='text' className='bg-black border-2 border-gray-500 rounded-[5px] px-[5px] h-[50px] w-[300px] text-[20px]' placeholder='Username'/>
             <input required name='password' value={formData.password} onChange={handleInputChange} type='password' className='bg-black border-2 border-gray-500 rounded-[5px] px-[5px] h-[50px] w-[300px] text-[20px]' placeholder='Password'/>
             <button className='bg-blue-500  rounded-[5px] py-2 text-[20px] font-[500]'>Login</button>
+            <button className='bg-gray-500 cursor-not-allowed rounded-[5px] py-2 text-[20px] font-[500]'>Loading</button>
         </form>
         </div>
         <p className='text-xl pt-2 text-red-500'>{err}</p>

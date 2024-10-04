@@ -206,7 +206,7 @@ const Posts = () => {
             <button className='bg-blue-500 px-3 rounded-full font-[500] text-[18px]'>Post</button>
             </div>
 
-            <div className='flex justify-center'>
+            <div className='flex justify-center mt-5'>
             <img src={img}/>
             </div>
 
