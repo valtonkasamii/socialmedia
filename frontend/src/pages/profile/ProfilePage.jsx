@@ -13,7 +13,7 @@ const ProfilePage = () => {
 
     const getProfile = async () => {
         try {
-            const response = await fetch(`https://social-media-app-22.vercel.app/api/users/profile/${username}`, {
+            const response = await fetch(`https://socialmedia-ozds.onrender.com/api/users/profile/${username}`, {
                 credentials: "include"
             })
             if (!response.ok) {
@@ -31,7 +31,7 @@ const ProfilePage = () => {
 
     const getMe = async () => {
         try {
-            const response = await fetch("https://social-media-app-22.vercel.app/api/auth/me", {
+            const response = await fetch("https://socialmedia-ozds.onrender.com/api/auth/me", {
                 credentials: "include"
             })
 
@@ -55,7 +55,7 @@ const ProfilePage = () => {
 
     const followUser = async () => {
         try {
-            const response = await fetch(`https://social-media-app-22.vercel.app/api/users/follow/${profile._id}`, {
+            const response = await fetch(`https://socialmedia-ozds.onrender.com/api/users/follow/${profile._id}`, {
                 method: "POST",
                 credentials: "include"
             })

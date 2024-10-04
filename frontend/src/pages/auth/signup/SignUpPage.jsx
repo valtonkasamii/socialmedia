@@ -15,7 +15,7 @@ const SignUpPage = () => {
         try {
         const { email, username, fullName, password } = formData
 
-        const response = await fetch("https://social-media-app-22.vercel.app/api/auth/signup", {
+        const response = await fetch("https://socialmedia-ozds.onrender.com/api/auth/signup", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({ email, username, fullName, password }),

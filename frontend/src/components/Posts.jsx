@@ -34,7 +34,7 @@ const Posts = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch("https://social-media-app-22.vercel.app/api/posts/create", {
+            const response = await fetch("https://socialmedia-ozds.onrender.com/api/posts/create", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 credentials: "include",
@@ -54,7 +54,7 @@ const Posts = () => {
 
     const allPosts = async () => {
         try {
-            const response = await fetch("https://social-media-app-22.vercel.app/api/posts/all", {
+            const response = await fetch("https://socialmedia-ozds.onrender.com/api/posts/all", {
                 credentials: "include"
             })
 
@@ -72,7 +72,7 @@ const Posts = () => {
 
     const handleLike = async (id) => {
         try {
-            const response = await fetch("https://social-media-app-22.vercel.app/api/posts/like", {
+            const response = await fetch("https://socialmedia-ozds.onrender.com/api/posts/like", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 credentials: "include",
@@ -102,7 +102,7 @@ const Posts = () => {
 
     const getMe = async () => {
         try {
-            const response = await fetch("https://social-media-app-22.vercel.app/api/auth/me", {
+            const response = await fetch("https://socialmedia-ozds.onrender.com/api/auth/me", {
                 credentials: "include"
             })
 
@@ -121,7 +121,7 @@ const Posts = () => {
         const currentUrl = window.location.href
             const username = currentUrl.split("/").pop().split(":")[1]
         try {
-            const response = await fetch(`https://social-media-app-22.vercel.app/api/posts/user/${username}`, {
+            const response = await fetch(`https://socialmedia-ozds.onrender.com/api/posts/user/${username}`, {
                 credentials: "include"
             })
 
@@ -138,7 +138,7 @@ const Posts = () => {
 
     const getFollowing = async () => {
         try {
-            const response = await fetch("https://social-media-app-22.vercel.app/api/posts/following", {
+            const response = await fetch("https://socialmedia-ozds.onrender.com/api/posts/following", {
                 credentials: "include"
             })
             if (!response.ok) {
@@ -153,7 +153,10 @@ const Posts = () => {
     }
 
     useEffect(() => {
-        getMe()
+        getMe()   
+    }, [])
+
+    useEffect(() => {
         if (window.location.href === "https://social-media-app-111.vercel.app/") {
             allPosts()
             setFf(true)
@@ -161,21 +164,6 @@ const Posts = () => {
         } else {
             setUserPosts()
             setFf(false)
-            const currentUrl = window.location.href
-            const username = currentUrl.split("/").pop().split(":")[1]
-            if (me.username === username) {
-                setPosting(true)
-            } else {
-                setPosting(false)
-            }
-       }    
-    }, [])
-
-    useEffect(() => {
-        if (window.location.href === "https://social-media-app-111.vercel.app/") {
-            
-            setPosting(true)
-        } else {
             const currentUrl = window.location.href
             const username = currentUrl.split("/").pop().split(":")[1]
             if (me.username === username) {
